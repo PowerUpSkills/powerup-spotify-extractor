@@ -1,16 +1,17 @@
-from .firefox_utils import find_firefox_profile
+from .firefox_utils import find_firefox_profile_and_executable
 from pathlib import Path
 import pandas as pd
 from playwright.sync_api import sync_playwright
 
 def extract_liked_songs():
     """Extract liked songs from Spotify and save to CSV."""
-    profile_path = find_firefox_profile()
+    profile_path, executable_path = find_firefox_profile_and_executable()
     downloads = Path.home() / "Downloads" / "spotify_liked_songs.csv"
 
     with sync_playwright() as p:
         browser = p.firefox.launch_persistent_context(
             user_data_dir=str(profile_path),
+            executable_path=executable_path,
             headless=False,
             viewport={"width": 1280, "height": 800},
         )
