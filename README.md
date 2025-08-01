@@ -1,148 +1,121 @@
-# 🎵 PowerUp Spotify Extractor
+# 🎵 PowerUp Spotify Liked Songs Extractor
 
-Extract your liked songs from Spotify and save them to CSV format with this easy-to-use command-line tool.
+**The ultimate tool to extract ALL your Spotify liked songs using the official Spotify Web API.**
+
+Extract all your liked songs reliably and save them to CSV format for backup, analysis, or migration to other music services.
 
 ## ✨ Features
 
-- 🎯 Extract all your liked songs from Spotify
-- 📊 Save songs to CSV format with title, artist, and album information
-- 🌐 Open Spotify liked songs directly in your browser
-- 🖥️ Beautiful CLI interface with ASCII art
-- 🔄 Automatic scrolling to load all songs
-- 🦊 Uses your existing Firefox profile (no login required)
+- 🔑 **Official Spotify API** - Uses Spotify's own API (no scraping)
+- 📊 **Complete extraction** - Gets ALL your liked songs, not just visible ones
+- 🔄 **Automatic pagination** - Handles large collections seamlessly
+- 💾 **Multiple formats** - Basic and detailed CSV outputs
+- 🛡️ **100% reliable** - No browser issues or rate limiting
+- 🚀 **Easy setup** - Guided 2-minute configuration
 
 ## 🚀 Quick Start
 
-### Option 1: Install from PyPI (Recommended)
-
-```bash
-pip install powerup-spotify-extractor
-```
-
-After installation, run:
-```bash
-powerup-spotify
-```
-
-### Option 2: Install from Source
-
-1. Clone the repository:
-```bash
-git clone https://github.com/PowerUpSkills/powerup-spotify-extractor.git
-cd powerup-spotify-extractor
-```
-
-2. Install the package:
-```bash
-pip install -e .
-```
-
-3. Run the application:
-```bash
-powerup-spotify
-```
-
-### Option 3: Development Setup
-
-1. Clone and navigate to the project:
-```bash
-git clone https://github.com/PowerUpSkills/powerup-spotify-extractor.git
-cd powerup-spotify-extractor
-```
-
-2. Install dependencies:
+### 1. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Install Playwright browsers:
+### 2. Run the Extractor
 ```bash
-playwright install firefox
+python3 spotify_api_extractor.py
 ```
 
-4. Run directly:
-```bash
-python -m powerup.main
+### 3. Follow the Setup Guide
+The script will guide you through:
+- Creating a free Spotify App (2 minutes)
+- Getting your API credentials
+- Authenticating with your Spotify account
+
+## 📋 Setup Instructions
+
+### Step 1: Create Spotify App
+1. Go to: https://developer.spotify.com/dashboard
+2. Log in with your Spotify account
+3. Click **"Create App"**
+4. Fill in:
+   - **App Name**: PowerUp Spotify Extractor
+   - **App Description**: Extract my liked songs
+   - **Website**: `https://localhost:8888/`
+   - **Redirect URI**: `https://localhost:8888/callback`
+5. Check **"Web API"** and agree to terms
+6. Click **"Save"**
+
+### Step 2: Get Credentials
+1. Click **"Settings"** on your new app
+2. Copy the **Client Secret** (click "View client secret")
+3. Paste it when prompted by the script
+
+### Step 3: Authenticate
+- The script will open your browser for Spotify login
+- Grant permission to read your library
+- You're all set!
+
+## 📁 Output Files
+
+### `spotify_liked_songs_api.csv` (Basic Format)
+```csv
+title,artist,album
+"Song Title","Artist Name","Album Name"
 ```
 
-## 📋 Requirements
-
-- Python 3.8 or higher
-- Firefox browser installed
-- Active Spotify account (logged in via Firefox)
-
-## 🛠️ How It Works
-
-1. The tool uses Playwright to automate Firefox
-2. It accesses your existing Firefox profile (where you're logged into Spotify)
-3. Navigates to your Spotify liked songs page
-4. Automatically scrolls to load all songs
-5. Extracts song data (title, artist, album)
-6. Saves everything to a CSV file in your Downloads folder
-
-## 📁 Output
-
-The extracted songs are saved as `spotify_liked_songs.csv` in your Downloads folder with the following columns:
-- **title**: Song title
-- **artist**: Artist name(s)
-- **album**: Album name
-
-## 🎮 Usage
-
-When you run the tool, you'll see a menu with three options:
-
-```
-POWER UP — Spotify Favourite Songs Extractor
-
-What would you like to do?
-
-[1] Extract liked songs to CSV
-[2] Open Spotify Liked Songs in browser
-[3] Quit
+### `spotify_liked_songs_detailed.csv` (Detailed Format)
+```csv
+title,artist,album,added_at,spotify_id,spotify_url
+"Song Title","Artist Name","Album Name","2023-01-15T10:30:00Z","4uLU6hMCjMI75M1A2tKUQC","https://open.spotify.com/track/..."
 ```
 
-Simply enter the number of your choice and press Enter.
+## 🔧 Requirements
 
-## 🔧 Troubleshooting
+- Python 3.7+
+- Spotify account
+- Internet connection
 
-### Firefox Profile Not Found
-If you get an error about Firefox profile not found:
-- Make sure Firefox is installed
-- Open Firefox and log into Spotify at least once
-- The tool looks for profiles in `~/Library/Application Support/Firefox/Profiles` (macOS)
+## 🛠️ Troubleshooting
 
-### Playwright Issues
-If you encounter Playwright-related errors:
-```bash
-playwright install firefox
-```
+**"Invalid client secret"?**
+- Make sure you copied the Client Secret correctly from your Spotify App settings
 
-### Permission Issues
-If you get permission errors during installation:
-```bash
-pip install --user powerup-spotify-extractor
-```
+**"Redirect URI mismatch"?**
+- Ensure your app has `https://localhost:8888/callback` as redirect URI
+- Note: HTTPS is required, not HTTP
+
+**Authentication issues?**
+- Delete `.spotify_cache` file and try again
+- Make sure you're using the same Spotify account
+
+## 📊 Why This Works
+
+Unlike browser-based scraping methods that are unreliable and limited, this tool:
+
+- ✅ Uses the **official Spotify Web API**
+- ✅ Gets **ALL songs** through proper pagination
+- ✅ **Never fails** due to UI changes or anti-scraping measures
+- ✅ **Respects rate limits** and API guidelines
+- ✅ **Future-proof** - won't break with Spotify updates
+
+## 🎯 Use Cases
+
+- **Backup** your music library
+- **Migrate** to other streaming services
+- **Analyze** your music taste and listening habits
+- **Share** your music collection with friends
+- **Archive** your liked songs for safekeeping
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
 
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📄 License
+---
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+**Made with ❤️ by PowerUp Skills**
 
-## 👨‍💻 Author
-
-**PowerUpSkills (Jannis)**
-- Medium: [@PowerUpSkills](https://medium.com/@PowerUpSkills)
-- GitHub: [@PowerUpSkills](https://github.com/PowerUpSkills)
-
-## ⚠️ Disclaimer
-
-This tool is for personal use only. Please respect Spotify's Terms of Service. The tool uses web automation to access your own data and does not violate any terms as it only accesses your personal liked songs that you already have access to.
-
-## 🔗 Links
-
-- [GitHub Repository](https://github.com/PowerUpSkills/powerup-spotify-extractor)
-- [Report Issues](https://github.com/PowerUpSkills/powerup-spotify-extractor/issues)
-- [Author's Medium](https://medium.com/@PowerUpSkills)
+*Get all your Spotify liked songs in minutes, not hours!*
