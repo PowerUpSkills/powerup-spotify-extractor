@@ -21,7 +21,7 @@ class SpotifyAPIExtractor:
         """Initialize the Spotify API extractor"""
         self.client_id = "4617782fcda147f78d50b69b63cea7a2"
         self.client_secret = None  # Will be prompted
-        self.redirect_uri = "https://localhost:8888/callback"
+        self.redirect_uri = "http://127.0.0.1:8080/callback"
         self.scope = "user-library-read"
         self.sp = None
         self.songs = []
@@ -61,7 +61,7 @@ class SpotifyAPIExtractor:
         print("   - App Name: PowerUp Spotify Extractor")
         print("   - App Description: Extract my liked songs")
         print("   - Website: https://localhost:8888/")
-        print("   - Redirect URI: https://localhost:8888/callback")
+        print("   - Redirect URI: http://127.0.0.1:8080/callback")
         print("5. Check 'Web API' and agree to terms")
         print("6. Click 'Save'")
         print("7. Click 'Settings' on your new app")
