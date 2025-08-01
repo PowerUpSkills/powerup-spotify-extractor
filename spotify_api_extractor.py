@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 class SpotifyAPIExtractor:
     def __init__(self):
         """Initialize the Spotify API extractor"""
-        self.client_id = "4617782fcda147f78d50b69b63cea7a2"
+        self.client_id = None  # Will be prompted
         self.client_secret = None  # Will be prompted
         self.redirect_uri = "http://127.0.0.1:8080/callback"
         self.scope = "user-library-read"
@@ -42,11 +42,12 @@ class SpotifyAPIExtractor:
             try:
                 with open('.env', 'r') as f:
                     for line in f:
-                        if line.startswith('SPOTIPY_CLIENT_SECRET='):
+                        if line.startswith('SPOTIPY_CLIENT_ID='):
+                            self.client_id = line.split('=', 1)[1].strip()
+                        elif line.startswith('SPOTIPY_CLIENT_SECRET='):
                             self.client_secret = line.split('=', 1)[1].strip()
-                            break
-                
-                if self.client_secret:
+
+                if self.client_id and self.client_secret:
                     logger.info("✅ Using existing credentials")
                     return True
             except Exception as e:
@@ -65,9 +66,15 @@ class SpotifyAPIExtractor:
         print("5. Check 'Web API' and agree to terms")
         print("6. Click 'Save'")
         print("7. Click 'Settings' on your new app")
-        print("8. Copy the 'Client Secret' (click 'View client secret')")
+        print("8. Copy the 'Client ID' and 'Client Secret'")
         print()
-        
+
+        # Get client ID from user
+        while not self.client_id:
+            self.client_id = input("📝 Paste your Client ID here: ").strip()
+            if not self.client_id:
+                print("❌ Client ID cannot be empty. Please try again.")
+
         # Get client secret from user
         while not self.client_secret:
             self.client_secret = input("📝 Paste your Client Secret here: ").strip()
