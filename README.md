@@ -117,6 +117,16 @@ Unlike browser-based scraping methods that are unreliable and limited, this tool
 - **Share** your music collection with friends
 - **Archive** your liked songs for safekeeping
 
+---
+
+## 📚 More Productivity Tips & Tutorials
+
+**Love this tool?** Check out my Medium profile for more productivity tips, automation tutorials, and developer tools:
+
+**👉 [Follow @PowerUpSkills on Medium](https://medium.com/@PowerUpSkills)**
+
+Discover more ways to automate your workflow, boost productivity, and master new technologies with step-by-step tutorials and practical guides!
+
 ## 📄 License
 
 MIT License - see LICENSE file for details.
